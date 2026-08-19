@@ -1,0 +1,631 @@
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — DK Consulting v7 / AI Strategic Diagnostic system
+   ═══════════════════════════════════════════════════════════════════════ */
+#dk-diag-page {
+  --ink:          #1A1A1A;
+  --ink-soft:     #2A2A2A;
+  --white:        #FFFFFF;
+  --paper:        #F5F3EE;
+  --khaki:        #C5AA88;
+  --khaki-light:  #ECE3D7;
+  --grey-soft:    #EAEAEA;
+  --black:        #000000;
+  --red:          #CC0000;
+  --red-dark:     #A30000;
+
+  --font-sans:  "DK Helvetica", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "DK Century", "Century Schoolbook", Century, Georgia, "Times New Roman", serif;
+  --font-mono:  "JetBrains Mono", "Courier New", monospace;
+
+  --max-w: 1280px;
+  --edge:  clamp(20px, 5vw, 56px);
+
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px;
+
+  --rule-hair:       1px solid rgba(0,0,0,0.10);
+  --rule-hair-white: 1px solid rgba(255,255,255,0.12);
+
+  --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#dk-diag-page *, #dk-diag-page *::before, #dk-diag-page *::after { box-sizing: border-box; margin: 0; padding: 0; }
+#dk-diag-page { color: var(--ink); background: var(--white); font-family: var(--font-sans); }
+#dk-diag-page a { text-decoration: none; color: inherit; }
+#dk-diag-page ul, #dk-diag-page ol { list-style: none; }
+#dk-diag-page img { display: block; max-width: 100%; }
+#dk-diag-page button { background: none; border: none; cursor: pointer; font: inherit; }
+#dk-diag-page input, #dk-diag-page textarea { font: inherit; }
+
+#dk-diag-page .dk-shell { max-width: var(--max-w); margin: 0 auto; padding-left: var(--edge); padding-right: var(--edge); }
+
+
+#dk-diag-page .display-l {
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: clamp(32px, 5vw, 60px);
+  line-height: 1.02; letter-spacing: -0.02em; color: var(--ink);
+}
+#dk-diag-page .body-l {
+  font-family: var(--font-serif); font-size: clamp(17px, 1.25vw, 19px); font-weight: 400;
+  line-height: 1.6; color: var(--ink-soft);
+}
+#dk-diag-page .body {
+  font-family: var(--font-serif); font-size: 16px; font-weight: 400;
+  line-height: 1.65; color: var(--ink-soft);
+}
+#dk-diag-page .eyebrow {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--khaki);
+}
+#dk-diag-page .mono {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.04em; color: var(--ink-soft);
+}
+
+/* Buttons — AI Strategic Diagnostic button system */
+#dk-diag-page .btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  min-height: 44px;
+  padding: 15px 24px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  box-shadow: none;
+  white-space: nowrap;
+  transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+}
+#dk-diag-page .btn-primary{
+  background: var(--red);
+  color: var(--white) !important;
+  border: 0;
+}
+#dk-diag-page .btn-primary:hover{
+  background: var(--red-dark);
+  color: var(--white) !important;
+}
+#dk-diag-page .btn-primary .arrow{
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0;
+  transform: translateX(0);
+  transition: transform 200ms var(--ease);
+}
+
+#dk-diag-page .btn-primary:hover .arrow{ transform: translateX(3px); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTACT PAGE
+   ═══════════════════════════════════════════════════════════════════════ */
+#dk-diag-page .dk-contact-hero {
+  background: var(--paper);
+  border-bottom: var(--rule-hair);
+  padding: clamp(56px, 7vw, 96px) 0 clamp(44px, 5.5vw, 72px);
+  overflow: hidden;
+}
+#dk-diag-page .dk-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6.4fr) minmax(360px, 400px);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+  justify-content: space-between;
+}
+#dk-diag-page .dk-contact-copy { max-width: 680px; }
+#dk-diag-page .dk-contact-copy .eyebrow { margin-bottom: var(--s4); color: var(--khaki); }
+#dk-diag-page .dk-contact-h1 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -0.028em;
+  text-transform: uppercase;
+  color: var(--ink);
+  max-width: 12.5ch;
+  margin-bottom: var(--s5);
+}
+#dk-diag-page .dk-contact-copy .body-l { max-width: 48ch; font-size: clamp(17px, 1.35vw, 19px); }
+#dk-diag-page .dk-contact-note {
+  margin-top: var(--s5);
+  padding-top: var(--s3);
+  border-top: var(--rule-hair);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s3);
+  align-items: start;
+  max-width: 520px;
+}
+#dk-diag-page .dk-contact-note-mark {
+  width: 8px;
+  height: 8px;
+  background: var(--red);
+  margin-top: 9px;
+}
+#dk-diag-page .dk-contact-note p {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+#dk-diag-page .dk-contact-form-card {
+  background: var(--ink);
+  color: var(--white);
+  width: 100%;
+  max-width: 390px;
+  justify-self: end;
+  padding: clamp(24px, 2.6vw, 32px);
+  border-top: 3px solid var(--red);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.10);
+}
+#dk-diag-page .dk-contact-form-head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s4);
+  align-items: flex-start;
+  padding-bottom: var(--s4);
+  border-bottom: var(--rule-hair-white);
+  margin-bottom: var(--s4);
+}
+#dk-diag-page .dk-contact-form-title {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+#dk-diag-page .dk-contact-form-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--khaki);
+  white-space: nowrap;
+  padding-top: 4px;
+}
+#dk-diag-page .dk-contact-form {
+  display: grid;
+  gap: var(--s3);
+}
+#dk-diag-page .dk-form-field {
+  display: grid;
+  gap: 6px;
+}
+#dk-diag-page .dk-form-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+#dk-diag-page .dk-form-control {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: var(--white);
+  color: var(--ink);
+  min-height: 42px;
+  padding: 11px 13px;
+  border-radius: 0;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.35;
+  transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease);
+}
+#dk-diag-page textarea.dk-form-control {
+  min-height: 108px;
+  resize: vertical;
+}
+#dk-diag-page .dk-form-control::placeholder { color: rgba(26,26,26,0.50); }
+#dk-diag-page .dk-form-control:focus {
+  border-color: var(--khaki);
+  box-shadow: 0 0 0 2px rgba(197,170,136,0.18);
+}
+#dk-diag-page .dk-contact-submit { width: 100%; margin-top: var(--s1); min-height: 42px; }
+#dk-diag-page .dk-ghl-form-embed {
+  width: 100%;
+  height: 489px;
+  min-height: 489px;
+  position: relative;
+  overflow: hidden;
+  background: #0A0A0A;
+}
+#dk-diag-page .dk-ghl-form-embed iframe {
+  display: block;
+  width: 100% !important;
+  max-width: none;
+  height: 489px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #0A0A0A;
+  overflow: hidden;
+  transform: none;
+  transform-origin: top left;
+}
+@media (min-width: 901px) {
+  #dk-diag-page .dk-contact-form-card {
+    max-width: 386px;
+    padding: clamp(20px, 2.2vw, 26px);
+  }
+  #dk-diag-page .dk-contact-form-head {
+    padding-bottom: var(--s3);
+    margin-bottom: var(--s3);
+  }
+}
+
+@media (max-width: 900px) {
+  #dk-diag-page .dk-ghl-form-embed {
+    height: 489px;
+    min-height: 489px;
+  }
+  #dk-diag-page .dk-ghl-form-embed iframe {
+    width: 100% !important;
+    height: 489px !important;
+    transform: none;
+  }
+}
+
+#dk-diag-page .dk-form-fineprint {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.48);
+  text-align: center;
+  margin-top: var(--s1);
+}
+
+#dk-diag-page .dk-contact-cards-section {
+  background: var(--white);
+  padding: clamp(40px, 6vw, 72px) 0;
+  border-bottom: var(--rule-hair);
+}
+#dk-diag-page .dk-contact-cards-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s5);
+  margin-bottom: var(--s5);
+}
+#dk-diag-page .dk-contact-cards-head .body { max-width: 52ch; }
+#dk-diag-page .dk-contact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s5);
+}
+#dk-diag-page .dk-contact-card {
+  background: var(--paper);
+  border: var(--rule-hair);
+  padding: var(--s5);
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: var(--s4);
+  align-items: start;
+  transition: border-color 180ms var(--ease), background 180ms var(--ease);
+}
+#dk-diag-page .dk-contact-card:hover { border-color: rgba(0,0,0,0.35); background: var(--white); }
+#dk-diag-page .dk-contact-card-icon {
+  width: 54px;
+  height: 54px;
+  background: var(--white);
+  border: var(--rule-hair);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+}
+#dk-diag-page .dk-contact-card-icon svg {
+  width: 26px;
+  height: 26px;
+}
+#dk-diag-page .dk-contact-card-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+#dk-diag-page .dk-contact-card-title {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+#dk-diag-page .dk-contact-card-detail {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  word-break: break-word;
+}
+#dk-diag-page .dk-contact-card-helper {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+#dk-diag-page .dk-contact-cta-band {
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(48px, 7vw, 84px) 0;
+}
+#dk-diag-page .dk-contact-cta-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--s8);
+  align-items: center;
+}
+#dk-diag-page .dk-contact-cta-band .eyebrow { margin-bottom: var(--s4); color: var(--khaki); }
+#dk-diag-page .dk-contact-cta-band .display-l { color: var(--white); }
+#dk-diag-page .dk-contact-cta-card {
+  background: var(--white);
+  color: var(--ink);
+  padding: var(--s6);
+  border-left: 3px solid var(--red);
+}
+#dk-diag-page .dk-contact-cta-card .body { margin-bottom: var(--s5); }
+
+#dk-diag-page .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 480ms var(--ease-out), transform 480ms var(--ease-out);
+}
+#dk-diag-page .reveal.is-in { opacity: 1; transform: translateY(0); }
+#dk-diag-page .reveal[data-delay="1"] { transition-delay: 80ms; }
+#dk-diag-page .reveal[data-delay="2"] { transition-delay: 160ms; }
+
+
+
+
+
+@media (max-width: 900px) {
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  #dk-diag-page .dk-contact-grid,
+  #dk-diag-page .dk-contact-cta-grid { grid-template-columns: 1fr; gap: var(--s6); }
+  #dk-diag-page .dk-contact-form-card { max-width: none; justify-self: stretch; }
+  #dk-diag-page .dk-contact-cards { grid-template-columns: 1fr; }
+  #dk-diag-page .dk-contact-cards-head { display: grid; gap: var(--s3); }
+  
+}
+
+@media (max-width: 768px) {
+  #dk-diag-page .display-l { font-size: clamp(30px, 9.5vw, 42px); line-height: 1.02; }
+  #dk-diag-page .body-l { font-size: 16px; line-height: 1.58; }
+  #dk-diag-page .body { font-size: 15px; }
+  #dk-diag-page .dk-contact-hero { padding: var(--s6) 0 var(--s5); }
+  #dk-diag-page .dk-contact-h1 { font-size: clamp(38px, 11vw, 52px); line-height: 0.96; max-width: 100%; }
+  #dk-diag-page .dk-contact-form-head { display: grid; }
+  #dk-diag-page .dk-contact-form-kicker { white-space: normal; }
+}
+
+@media (max-width: 600px) {
+  
+  
+  #dk-diag-page .dk-contact-card { grid-template-columns: 52px 1fr; padding: var(--s4); }
+  #dk-diag-page .dk-contact-card-icon { width: 52px; height: 52px; }
+  #dk-diag-page .dk-contact-card-icon svg { width: 24px; height: 24px; }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  #dk-diag-page *, #dk-diag-page *::before, #dk-diag-page *::after {
+    animation-duration: 0ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0ms !important;
+    transition-delay: 0ms !important;
+  }
+  #dk-diag-page .reveal { opacity: 1; transform: none; }
+}
+
+</style>
+<style>
+/* Body-only hero top spacing — matched to Resources page */
+#dk-diag-page .dk-contact-hero {
+  padding-top: clamp(136px, 12vw, 192px) !important;
+}
+@media (max-width: 768px) {
+  #dk-diag-page .dk-contact-hero {
+    padding-top: clamp(104px, 18vw, 128px) !important;
+  }
+}
+</style></head>
+<body>
+<div id="dk-diag-page">
+
+<main id="top">
+<section aria-label="Contact DK Consulting" class="dk-contact-hero">
+<div class="dk-shell">
+<div class="dk-contact-grid">
+<div class="dk-contact-copy">
+<div class="eyebrow reveal">Contact Me</div>
+<h1 class="dk-contact-h1 reveal" data-delay="1">Feeling behind on AI? You're closer than you think.</h1>
+<p class="body-l reveal" data-delay="2">Most of the confusion comes from having too many options and no clear direction. A single conversation can change that.</p>
+<div class="dk-contact-note reveal" data-delay="2">
+<span aria-hidden="true" class="dk-contact-note-mark"></span>
+<p>Use the form to send a short note, or reach out directly using the contact details below.</p>
+</div>
+</div>
+<aside aria-label="Contact form" class="dk-contact-form-card reveal" data-delay="1">
+<div class="dk-contact-form-head">
+<h2 class="dk-contact-form-title">Start the conversation</h2>
+<div class="dk-contact-form-kicker">Direct inquiry</div>
+</div>
+<div class="dk-ghl-form-embed">
+<iframe
+    src="https://api.leadconnectorhq.com/widget/form/gswoqPEKAHnHIe4tnRxg"
+    style="width:100%;height:100%;border:none;border-radius:0px"
+    id="inline-gswoqPEKAHnHIe4tnRxg" 
+    data-layout="{'id':'INLINE'}"
+    data-trigger-type="alwaysShow"
+    data-trigger-value=""
+    data-activation-type="alwaysActivated"
+    data-activation-value=""
+    data-deactivation-type="neverDeactivate"
+    data-deactivation-value=""
+    data-form-name="JFW - DK - Form - Website - Contact- WarmLead- Contact Me "
+    data-height="489"
+    data-layout-iframe-id="inline-gswoqPEKAHnHIe4tnRxg"
+    data-form-id="gswoqPEKAHnHIe4tnRxg"
+    title="JFW - DK - Form - Website - Contact- WarmLead- Contact Me "
+    
+        >
+</iframe>
+</div>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+</aside>
+</div>
+</div>
+</section>
+<section aria-label="Contact details" class="dk-contact-cards-section">
+<div class="dk-shell">
+<div class="dk-contact-cards-head reveal">
+<div>
+<div class="eyebrow" style="margin-bottom: var(--s3);">Contact Details</div>
+<h2 class="display-l">Choose the simplest way to reach me.</h2>
+</div>
+</div>
+<div class="dk-contact-cards">
+<a class="dk-contact-card reveal" href="tel:+14156805730">
+<span aria-hidden="true" class="dk-contact-card-icon">
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 4.5 8.8 3.7c.6-.2 1.2.1 1.5.7l1 2.3c.2.5.1 1.1-.3 1.5l-1.1 1.1c.8 1.7 2.1 3 3.8 3.8l1.1-1.1c.4-.4 1-.5 1.5-.3l2.3 1c.6.3.9.9.7 1.5l-.8 2.3c-.2.6-.8 1-1.4 1C10.8 17.5 6.5 13.2 6.5 6.4c0-.6.4-1.2 1-1.4Z" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.8"></path></svg>
+</span>
+<span class="dk-contact-card-copy">
+<span class="dk-contact-card-title">Phone</span>
+<span class="dk-contact-card-detail">(415) 680-5730</span>
+<span class="dk-contact-card-helper">Preferred contact for calls &amp; texts</span>
+</span>
+</a>
+<a class="dk-contact-card reveal" data-delay="1" href="mailto:hello@danooshkapadia.com">
+<span aria-hidden="true" class="dk-contact-card-icon">
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M4 6.5h16v11H4v-11Z" stroke="currentColor" stroke-width="1.8"></path><path d="m4.8 7.4 7.2 5.1 7.2-5.1" stroke="currentColor" stroke-linecap="square" stroke-width="1.8"></path></svg>
+</span>
+<span class="dk-contact-card-copy">
+<span class="dk-contact-card-title">Email</span>
+<span class="dk-contact-card-detail">hello@danooshkapadia.com</span>
+<span class="dk-contact-card-helper">Replies typically within 24 hours</span>
+</span>
+</a>
+<a class="dk-contact-card reveal" data-delay="2" href="https://www.linkedin.com/in/danooshk/" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="dk-contact-card-icon">
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 9.5v8" stroke="currentColor" stroke-width="1.9"></path><path d="M11 17.5v-4.4c0-1.9 1.1-3.1 2.7-3.1 1.8 0 2.8 1.2 2.8 3.3v4.2" stroke="currentColor" stroke-width="1.9"></path><path d="M6.5 6.6v.1" stroke="currentColor" stroke-linecap="square" stroke-width="2.8"></path></svg>
+</span>
+<span class="dk-contact-card-copy">
+<span class="dk-contact-card-title">LinkedIn</span>
+<span class="dk-contact-card-detail">linkedin.com/in/danooshk</span>
+<span class="dk-contact-card-helper">Connect on LinkedIn</span>
+</span>
+</a>
+</div>
+</div>
+</section>
+<section aria-label="Book the diagnostic" class="dk-contact-cta-band">
+<div class="dk-shell">
+<div class="dk-contact-cta-grid">
+<div class="reveal">
+<div class="eyebrow">Ready for clarity?</div>
+<h2 class="display-l">A single conversation can turn AI noise into a practical next move.</h2>
+</div>
+<div class="dk-contact-cta-card reveal" data-delay="1">
+<p class="body">For a structured working session, book the AI Strategic Diagnostic. For a lighter first touch, send a message above.</p>
+<a class="btn btn-primary" href="https://danooshkapadia.com/diagnostic">Book the Diagnostic <span class="arrow">→</span></a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+</div>
+<script>(function() {
+  'use strict';
+  var root = document.getElementById('dk-diag-page');
+  if (!root) return;
+
+
+  var reveals = root.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && reveals.length) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+    reveals.forEach(function(el) { io.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('is-in'); });
+  }
+})();</script>
+</body>
+</html>
