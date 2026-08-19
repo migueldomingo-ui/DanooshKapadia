@@ -1,0 +1,429 @@
+
+
+<style>
+  :root{
+    --paper:#F4EEE3;
+    --paper-deep:#ECE3D4;
+    --mist:#E9E7DF;
+    --white:#FFFFFF;
+    --ink:#0E0D0B;
+    --ink-soft:#26241F;
+    --slate:#6B655B;
+    --slate-on-dark:#A9A296;
+    --khaki:#C5AA88;
+    --khaki-deep:#A98C66;
+    --red:#CC0000;
+    --line:rgba(14,13,11,0.22);
+    --line-soft:rgba(14,13,11,0.12);
+    --line-dark:rgba(244,238,227,0.22);
+    --sans:"DK Helvetica","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --serif:"DK Century","Century Schoolbook",Georgia,"Times New Roman",serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+    --ease:cubic-bezier(0.2,0.7,0.1,1);
+    --maxw:1280px;
+    --gutter:clamp(24px,5vw,88px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+
+  /* type — matches the scale Jonathan uses across the site */
+  .kicker{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--khaki-deep);}
+  .display{font-family:var(--sans);font-weight:700;letter-spacing:-.02em;line-height:0.98;color:var(--ink);}
+  .h-xl{font-size:clamp(44px,7.5vw,96px);}
+  .h-lg{font-size:clamp(34px,5vw,68px);}
+  .h-md{font-size:clamp(27px,3.2vw,44px);}
+  .lede{font-family:var(--serif);font-size:clamp(19px,1.8vw,23px);line-height:1.5;color:var(--ink-soft);}
+  .body{font-family:var(--serif);font-size:18px;line-height:1.6;color:var(--ink-soft);}
+  .meta{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--slate);}
+  .meta--ondark{color:var(--slate-on-dark);}
+  em{font-style:italic;}
+  .red{color:var(--red);}
+  b,strong{font-weight:700;color:var(--ink);}
+
+  /* layout */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter);}
+  .band{padding:clamp(68px,11vh,140px) 0;}
+  .band--paper{background:var(--paper);}
+  .band--paper-deep{background:var(--paper-deep);}
+  .band--mist{background:var(--mist);}
+  .band--white{background:var(--white);}
+  .band--dark{background:#111009;color:var(--paper);}
+  .two-col{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,6vw,96px);align-items:start;}
+  .stack-md>*+*{margin-top:22px;}
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:3px;padding:15px 24px;transition:transform .15s var(--ease);}
+  .btn--red{background:var(--red);color:#fff;}
+  .btn--red:hover{transform:translateY(-1px);}
+  .btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+  .btn--ghost:hover{border-color:var(--ink);}
+
+  /* hero */
+  .hero{background:var(--paper-deep);padding:clamp(136px, 12vw, 192px) 0 clamp(60px,9vh,110px);}
+  .hero .h-xl{max-width:15ch;margin-top:22px;}
+  .hero .lede{max-width:46ch;margin-top:26px;}
+  .hero .cta-row{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .hero .spec{margin-top:42px;display:flex;gap:36px;flex-wrap:wrap;}
+  .spec .meta b{display:block;font-family:var(--sans);font-size:14px;color:var(--ink);letter-spacing:0;margin-top:3px;}
+
+  /* big stat */
+  .stat{font-family:var(--sans);font-weight:700;color:var(--red);line-height:.82;letter-spacing:-.03em;font-size:clamp(120px,24vw,330px);}
+  .stat-label{font-family:var(--sans);font-weight:700;color:var(--paper);font-size:clamp(26px,4vw,54px);line-height:1.05;letter-spacing:-.02em;max-width:18ch;margin-top:10px;}
+  .stat-src{margin-top:32px;display:flex;align-items:center;gap:10px;}
+  .stat-src .sq{width:9px;height:9px;background:var(--red);display:inline-block;flex:none;}
+
+  /* misdiagnosis */
+  .strike{position:relative;display:inline-block;}
+  .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:3px;background:var(--red);transform:rotate(-3deg);}
+
+  /* curve figure */
+  .figure-frame{margin-top:46px;}
+  .figure-cap{margin-top:22px;max-width:62ch;}
+  svg .band-label{font-family:var(--sans);font-weight:700;}
+  svg .band-sub{font-family:var(--serif);font-style:italic;}
+  svg .node-label{font-family:var(--serif);}
+  svg .axis-label{font-family:var(--sans);font-weight:700;letter-spacing:.14em;text-transform:uppercase;}
+
+  /* stepped fluency ladder */
+  .ladder{margin-top:64px;display:grid;grid-template-columns:repeat(5,1fr);gap:0 14px;align-items:end;}
+  .step{position:relative;background:var(--paper-deep);border-top:2px solid var(--ink);padding:18px 18px 22px;}
+  .step .n{font-family:var(--mono);font-size:12px;color:var(--slate);}
+  .step h4{font-family:var(--sans);font-weight:700;font-size:21px;margin-top:8px;}
+  .step p{font-family:var(--serif);font-size:15px;color:var(--slate);margin-top:8px;line-height:1.45;}
+  .step--1{min-height:180px;}
+  .step--2{min-height:235px;}
+  .step--3{min-height:290px;}
+  .step--4{min-height:345px;border-top-color:var(--red);}
+  .step--5{min-height:400px;}
+  .step--5 h4{color:var(--slate);}
+  .step .flag{position:absolute;left:0;bottom:calc(100% + 10px);display:flex;align-items:center;gap:7px;font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;}
+  .step .flag .sq{width:8px;height:8px;display:inline-block;flex:none;}
+  .flag--start{color:var(--khaki-deep);}  .flag--start .sq{background:var(--khaki-deep);}
+  .flag--land{color:var(--red);}          .flag--land .sq{background:var(--red);}
+  .flag--beyond{color:var(--slate);}      .flag--beyond .sq{background:var(--slate);}
+
+  /* sprint spec */
+  .speclist{margin-top:26px;border-top:1px solid var(--line);}
+  .speclist .li{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:14px 0;border-bottom:1px solid var(--line-soft);align-items:baseline;}
+  .speclist .k{font-family:var(--mono);font-size:12px;color:var(--slate);letter-spacing:.04em;text-transform:uppercase;}
+  .speclist .v{font-family:var(--serif);font-size:17px;color:var(--ink-soft);}
+  .speclist .v b{font-family:var(--sans);font-size:16px;}
+
+  /* says/does + measurement */
+  .sd-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);margin-top:44px;}
+  .sd h3{font-family:var(--sans);font-weight:700;font-size:clamp(44px,6vw,80px);letter-spacing:-.02em;line-height:1;}
+  .sd .bar{height:7px;margin:12px 0 16px;}
+  .sd--says .bar{background:var(--ink);}
+  .sd--does h3{color:var(--red);}
+  .sd--does .bar{background:var(--red);}
+  .sd .claim{font-family:var(--sans);font-weight:700;font-size:17px;color:var(--ink);}
+  .sd .note{font-family:var(--serif);color:var(--slate);font-size:16px;margin-top:8px;max-width:34ch;}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);margin-top:54px;}
+  .three .col .top-rule{height:1px;background:var(--line);margin-bottom:16px;}
+  .three .col .when{font-family:var(--mono);font-size:12px;color:var(--slate);}
+  .three .col h4{font-family:var(--sans);font-weight:700;font-size:22px;margin-top:6px;}
+  .three .col p{font-family:var(--serif);font-size:16px;color:var(--ink-soft);margin-top:10px;line-height:1.5;}
+
+  /* testimonials (hidden until approved) */
+  .quote-band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:38px 0;}
+  .quote-band blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.2vw,27px);line-height:1.45;color:var(--ink);max-width:34ch;}
+  .quote-band .attr{margin-top:18px;font-family:var(--sans);font-weight:700;font-size:14px;}
+  .quote-band .attr span{display:block;font-family:var(--mono);font-weight:400;font-size:12px;color:var(--slate);margin-top:4px;}
+
+  /* signoff */
+  .signoff{background:var(--paper-deep);}
+  .signoff .lede{font-size:clamp(22px,2.5vw,32px);max-width:26ch;color:var(--ink);}
+  .signoff .ornot{margin-top:22px;max-width:52ch;}
+  .sig{font-family:var(--serif);font-style:italic;font-size:44px;color:var(--ink);margin:36px 0 16px;}
+  .signoff .name{font-family:var(--sans);font-weight:700;font-size:17px;}
+  .signoff .role{font-family:var(--mono);font-size:12px;color:var(--slate);margin-top:4px;}
+  .signoff .email{font-family:var(--sans);font-weight:700;font-size:20px;color:var(--red);text-decoration:none;}
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  /* reveal — content visible by default; animation is enhancement only */
+  .reveal{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .45s var(--ease),transform .45s var(--ease);}
+    .reveal.in{opacity:1;transform:none;}
+  }
+
+  @media (max-width:900px){
+    .two-col{grid-template-columns:1fr;gap:30px;}
+    .sd-grid{grid-template-columns:1fr;}
+    .three{grid-template-columns:1fr;}
+    
+    
+    .ladder{grid-template-columns:1fr;gap:46px 0;align-items:stretch;}
+    .step{min-height:0;}
+    .speclist .li{grid-template-columns:1fr;gap:4px;}
+  }
+
+
+/* Resources-style hero top spacing */
+@media (max-width: 900px) {
+  .hero { padding-top: clamp(104px, 18vw, 128px); }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+<div class="wrap">
+<p class="kicker reveal">The AI Team Sprint</p>
+<h1 class="display h-xl reveal">Five weeks. One team. A working relationship with AI.</h1>
+<p class="lede reveal">A structured rollout that moves a team from AI experimentation to confident, repeatable use. Not a course. Not a keynote. The behavior change itself.</p>
+<div class="cta-row reveal">
+<a class="btn btn--red js-cta" href="https://danooshkapadia.com/contact">Start a conversation →</a>
+<a class="btn btn--ghost" href="#sprint">How it works →</a>
+</div>
+<div class="spec reveal">
+<span class="meta">FORMAT<b>5 live sessions · 1 per week</b></span>
+<span class="meta">MATERIAL<b>Your team’s real work</b></span>
+<span class="meta">RESULT<b>Measured, not assumed</b></span>
+</div>
+</div>
+</section>
+<!-- ============ 95% — the problem ============ -->
+<section class="band band--dark">
+<div class="wrap">
+<div class="stat reveal">95<span style="font-size:.42em;vertical-align:top;">%</span></div>
+<div class="stat-label reveal">of corporate AI pilots return nothing measurable.</div>
+<div class="stat-src reveal">
+<span class="sq"></span>
+<span class="meta meta--ondark">MIT, “The GenAI Divide,” 2025 — a study of 300+ enterprise deployments.</span>
+</div>
+</div>
+</section>
+<!-- ============ THE MISDIAGNOSIS ============ -->
+<section class="band band--paper">
+<div class="wrap">
+<p class="kicker reveal">The misdiagnosis</p>
+<div class="two-col" style="margin-top:24px;">
+<div class="stack-md">
+<h2 class="display h-lg reveal">It was never a <span class="strike">technology</span> problem.</h2>
+<h2 class="display h-lg red reveal">It’s a behavior problem.</h2>
+</div>
+<div class="stack-md reveal">
+<p class="body">The models work. The licenses are paid. The training was delivered. And the way the work actually gets done has barely moved.</p>
+<p class="body">Buying the tool is the easy part. Changing what a person does at 9 a.m. on a Tuesday is the whole job. That is what the Sprint is built to do.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ THE ACTIVATION CURVE ============ -->
+<section class="band band--white">
+<div class="wrap">
+<p class="kicker reveal">Where training dies</p>
+<h2 class="display h-md reveal" style="margin-top:16px;max-width:20ch;">People don’t adopt AI all at once. They move through it.</h2>
+<div class="figure-frame reveal">
+<svg aria-label="The activation curve: a team moves from Hear It through Believe It to Live It. Most training stops partway, where training budgets quietly disappear." role="img" viewbox="0 0 1180 560" width="100%">
+<rect fill="#A98C66" height="150" width="1000" x="120" y="40"></rect>
+<rect fill="#D8C3A4" height="150" width="1000" x="120" y="190"></rect>
+<rect fill="#E4E2DA" height="150" width="1000" x="120" y="340"></rect>
+<text class="band-label" fill="#0E0D0B" font-size="34" text-anchor="end" x="1100" y="118">LIVE IT.</text>
+<text class="band-sub" fill="#26241F" font-size="16" text-anchor="end" x="1100" y="142">Embedded experience</text>
+<text class="band-label" fill="#0E0D0B" font-size="34" text-anchor="end" x="1100" y="268">BELIEVE IT.</text>
+<text class="band-sub" fill="#26241F" font-size="16" text-anchor="end" x="1100" y="292">Learning</text>
+<text class="band-label" fill="#0E0D0B" font-size="34" text-anchor="end" x="1100" y="418">HEAR IT.</text>
+<text class="band-sub" fill="#26241F" font-size="16" text-anchor="end" x="1100" y="442">Communicating</text>
+<line stroke="#0E0D0B" stroke-width="2" x1="120" x2="120" y1="40" y2="490"></line>
+<line stroke="#0E0D0B" stroke-width="2" x1="120" x2="1140" y1="490" y2="490"></line>
+<polygon fill="#0E0D0B" points="120,30 114,46 126,46"></polygon>
+<polygon fill="#0E0D0B" points="1150,490 1134,484 1134,496"></polygon>
+<text class="axis-label" fill="#6B655B" font-size="12" x="132" y="30">Degree of support</text>
+<text class="axis-label" fill="#6B655B" font-size="12" text-anchor="end" x="1138" y="512">Time</text>
+<path d="M150,470 C300,460 360,430 470,400 C560,376 600,330 660,300 C720,270 760,220 840,180 C920,140 1000,110 1090,86" fill="none" stroke="#0E0D0B" stroke-width="3"></path>
+<line stroke="#CC0000" stroke-dasharray="4 5" stroke-width="1.5" x1="600" x2="600" y1="330" y2="490"></line>
+<circle cx="600" cy="330" fill="#CC0000" r="8" stroke="#fff" stroke-width="2"></circle>
+<text class="axis-label" fill="#CC0000" font-size="12" text-anchor="middle" x="600" y="528">Where training dies</text>
+<g fill="#fff" stroke="#0E0D0B" stroke-width="2.5">
+<circle cx="150" cy="470" r="7"></circle>
+<circle cx="350" cy="432" r="7"></circle>
+<circle cx="470" cy="400" r="7"></circle>
+<circle cx="660" cy="300" r="7"></circle>
+<circle cx="840" cy="180" r="7"></circle>
+<circle cx="1090" cy="86" r="7"></circle>
+</g>
+<g class="node-label" fill="#26241F" font-size="15">
+<text x="166" y="466">Awareness</text>
+<text x="366" y="428">Understanding</text>
+<text x="486" y="396">Accepting</text>
+<text x="676" y="296">Integrating</text>
+<text x="856" y="176">New normal way to work</text>
+<text text-anchor="end" x="1074" y="74">Look into the future</text>
+</g>
+</svg>
+</div>
+<p class="figure-cap body reveal">Most companies invest from <em>hearing</em> to <em>believing</em>, then stop. The value only appears once a team <em>lives</em> it. The gap between the two is where training budgets quietly disappear. The Sprint is engineered to carry a team across that gap, not up to its edge.</p>
+</div>
+</section>
+<!-- ============ THE FLUENCY LADDER (stepped) ============ -->
+<section class="band band--paper">
+<div class="wrap">
+<p class="kicker reveal">The fluency ladder</p>
+<div class="two-col reveal" style="margin-top:16px;">
+<h2 class="display h-md" style="max-width:14ch;">What “using AI” actually means.</h2>
+<p class="body" style="align-self:end;">“We use AI” hides five very different behaviors. Most teams start on the bottom rung, a better Google. A five-week Sprint moves an individual up <b>three to four rungs.</b></p>
+</div>
+<div class="ladder">
+<div class="step step--1 reveal">
+<span class="flag flag--start"><span class="sq"></span>Most teams start</span>
+<p class="n">01</p>
+<h4>Lookup</h4>
+<p>A better Google — quick answers and basic research.</p>
+</div>
+<div class="step step--2 reveal">
+<p class="n">02</p>
+<h4>Drafting</h4>
+<p>Writing things — emails, reports, summaries.</p>
+</div>
+<div class="step step--3 reveal">
+<p class="n">03</p>
+<h4>Thinking partner</h4>
+<p>Working through analysis, decisions, and problems.</p>
+</div>
+<div class="step step--4 reveal">
+<span class="flag flag--land"><span class="sq"></span>Where a Sprint lands</span>
+<p class="n">04</p>
+<h4>Workflow</h4>
+<p>AI across multiple steps of one task — idea to deliverable.</p>
+</div>
+<div class="step step--5 reveal">
+<span class="flag flag--beyond"><span class="sq"></span>Beyond one Sprint</span>
+<p class="n">05</p>
+<h4>Automation</h4>
+<p>Reusable AI tools for recurring work — real time saved.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ THE SPRINT, BRIEFLY ============ -->
+<section class="band band--white" id="sprint">
+<div class="wrap">
+<p class="kicker reveal">How I run it</p>
+<div class="two-col" style="margin-top:16px;">
+<div class="reveal">
+<h2 class="display h-md" style="max-width:13ch;">The shape of the five weeks.</h2>
+<p class="body" style="margin-top:22px;">Five live working sessions, one per week, same day, same time. Nobody brings hypothetical exercises — every session runs on work your team is actually trying to move. Between sessions, the team lives in a shared channel led by one of your own people.</p>
+<p class="body" style="margin-top:16px;">It starts before week one — guided setup plus short discovery calls to find the workflows that anchor the sessions — and it ends above the team: a leadership readout on what shifted, what stuck, and where to take the rollout next.</p>
+</div>
+<div class="reveal">
+<div class="speclist">
+<div class="li"><span class="k">Format</span><span class="v"><b>5 live sessions</b> · one per week · virtual</span></div>
+<div class="li"><span class="k">Built on</span><span class="v">Your team’s real workflows, found in discovery</span></div>
+<div class="li"><span class="k">Between sessions</span><span class="v">A shared team channel, led internally</span></div>
+<div class="li"><span class="k">Bookends</span><span class="v">Guided setup before · leadership readout after</span></div>
+<div class="li"><span class="k">Measured by</span><span class="v">Each person against their own starting point</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ MEASURED AGAINST ITSELF ============ -->
+<section class="band band--mist">
+<div class="wrap">
+<p class="kicker reveal">Measured against itself</p>
+<h2 class="display h-md reveal" style="margin-top:16px;max-width:18ch;">Confidence is easy to fake. Behavior is not.</h2>
+<div class="sd-grid">
+<div class="sd sd--says reveal">
+<h3>Says</h3>
+<div class="bar"></div>
+<p class="claim">“I’m comfortable with AI.”</p>
+<p class="note">A survey answer. Inflated by good intentions and the launch-week glow.</p>
+</div>
+<div class="sd sd--does reveal">
+<h3>Does</h3>
+<div class="bar"></div>
+<p class="claim">Changed how the work gets done.</p>
+<p class="note">An observable act. The only signal that tells you adoption actually happened.</p>
+</div>
+</div>
+<div class="three">
+<div class="col reveal">
+<div class="top-rule"></div>
+<p class="when">Before session 1</p>
+<h4>Where you’re starting</h4>
+<p>A ten-minute survey. Honest answers, not optimistic ones. It sets the baseline for the whole Sprint.</p>
+</div>
+<div class="col reveal">
+<div class="top-rule"></div>
+<p class="when">After session 3</p>
+<h4>Halfway in</h4>
+<p>A seven-minute check-in. Surfaces what’s clicking and what isn’t, so we adjust the back half.</p>
+</div>
+<div class="col reveal">
+<div class="top-rule"></div>
+<p class="when">At the end</p>
+<h4>Where you landed</h4>
+<p>A final survey, compared against each person’s own starting point. It produces the team’s progress report — the document your leadership actually wants.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="band band--paper">
+  <div class="wrap">
+    <p class="kicker">Leaders who have worked with Danoosh</p>
+    <div class="two-col" style="margin-top:30px;">
+      <div class="quote-band">
+        <blockquote>"There's no way I would have signed up to build a three-year strategic plan for that client without Claude in my toolbox. It would have taken me months — we got it done in a few weeks. I'm a toolmaker, not a tech wizard. But now I know enough about AI to be dangerous with it."</blockquote>
+        <p class="attr">Mike Zacharias<span>Manufacturing Consultant · 30-year owner-operator</span></p>
+      </div>
+      <div class="quote-band">
+        <blockquote>&ldquo;I&rsquo;m not a tech person &mdash; I started using a computer late in life &mdash; and Danoosh made it easy and simple. He really helped me go through it and understand.&rdquo;</blockquote>
+        <p class="attr">Fabrizio Cercatore<span>Owner · Hot Italian</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ SIGN-OFF / CTA ============ -->
+<section class="band signoff" id="talk">
+<div class="wrap">
+<p class="lede reveal">If any of this maps to what you’re seeing inside your own company, let’s talk it through.</p>
+<p class="body ornot reveal">A 30-minute conversation. We’ll figure out whether the Sprint fits your team — or whether it doesn’t. Either way, you’ll leave with a clearer read on where your people actually are.</p>
+<p aria-hidden="true" class="sig reveal">Danoosh</p>
+<p class="name reveal">Danoosh Kapadia</p>
+<p class="role reveal">A thinking partner for high-stakes decisions</p>
+<div class="reveal" style="margin-top:30px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
+<a class="btn btn--red js-cta" href="https://danooshkapadia.com/contact">Start a conversation →</a>
+<a class="email" href="mailto:hello@danooshkapadia.com">hello@danooshkapadia.com</a>
+</div>
+</div>
+</section>
+
+
+<script>
+  // Reveal on scroll — enhancement only. Content renders by default;
+  // if JS fails or reduced-motion is set, everything is already visible.
+  (function(){
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var els = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
